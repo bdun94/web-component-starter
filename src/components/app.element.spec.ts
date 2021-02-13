@@ -13,6 +13,7 @@ describe('AppElement', () => {
 
   it('should have a greeting', () => {
     app.connectedCallback();
+		console.log(app.shadowRoot?.querySelector('h1'));
 
     expect(app.querySelector('h1')?.innerHTML).toEqual(
       'Welcome to web-components!'
