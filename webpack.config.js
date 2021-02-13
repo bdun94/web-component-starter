@@ -1,34 +1,17 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { merge } = require('webpack-merge');
+const webpackCommon = require('./webpack.common');
+const webpackDev = require('./webpack.dev');
+const webpackProd = require('./webpack.prod');
 
-module.exports = {
-	mode: 'development',
-  entry: './src/index.ts',
-	devtool: 'eval-source-map',
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-	module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-	devServer: {
-		contentBase: path.resolve(__dirname, 'dist'),
-		compress: true,
-		port: 5000
-	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, 'templates/index.html')
-		})
-	]
-}
+module.exports = (env) => {
+  switch (env.NODE_ENV) {
+    case 'development':
+      return merge(webpackCommon, webpackDev);
+    case 'production':
+      return merge(webpackCommon, webpackProd);
+    default:
+      console.log('Default');
+      return merge(webpackCommon, webpackDev);
+  }
+};
