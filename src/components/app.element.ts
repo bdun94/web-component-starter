@@ -1,17 +1,22 @@
-import { css, customElement, html, LitElement, TemplateResult } from 'lit-element';
+import {
+  css,
+  customElement,
+  html,
+  LitElement,
+  TemplateResult,
+} from 'lit-element';
 
 @customElement('app-element')
 export class AppElement extends LitElement {
-
-	static get styles() {
-		return css`
-			.main {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-		`;
-	}
+  static get styles() {
+    return css`
+      .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    `;
+  }
 
   render(): TemplateResult {
     return html`
@@ -21,7 +26,7 @@ export class AppElement extends LitElement {
       <main class="main">
         <h1>App Starter</h1>
         <p>Typescript Example Starter App</p>
-				<img src="assets/logo-192x192.png" alt="tree" />
+        <img src="assets/logo-192x192.png" alt="tree" />
       </main>
     `;
   }
